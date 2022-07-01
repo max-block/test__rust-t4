@@ -1,0 +1,14 @@
+@base = http://localhost:3000
+
+### get all data1
+GET {{base}}/list_data1
+
+### create data1
+GET {{base}}/create_data1
+
+
+### get all data2
+GET {{base}}/list_data2
+
+### create data2
+GET {{base}}/create_data2
