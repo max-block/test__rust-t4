@@ -4,5 +4,6 @@ mod scheduler;
 mod server;
 mod service;
 mod startup;
+mod util;
 
 pub use startup::run;

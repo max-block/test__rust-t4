@@ -1,6 +1,8 @@
-use std::sync::Arc;
+use std::{sync::Arc, time::Duration};
 
-use crate::db::Db;
+use chrono::Utc;
+
+use crate::{db::Db, async_synchronized};
 
 pub struct Data2Service {
     db: Arc<Db>,
@@ -12,7 +14,9 @@ impl Data2Service {
     }
 
     pub async fn generate(&self) {
-        println!("Data2Service::generate");
+        // async_synchronized!();
+        println!("Data2Service::generate, {:?}", Utc::now());
+        // tokio::time::sleep(Duration::from_secs(5)).await;
         let value = self.db.count_data1().await.unwrap_or_default() + 1;
         self.db.create_data2(value as i32).await;
     }

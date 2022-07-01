@@ -16,7 +16,7 @@ pub fn run_scheduler(app: Arc<App>) {
             app.data1_service.generate().await;
         }
     });
-    scheduler.every(1.seconds()).run(move || {
+    scheduler.every(4.seconds()).run(move || {
         let app = app_job2.clone();
         async move {
             app.data2_service.generate().await;
@@ -26,7 +26,7 @@ pub fn run_scheduler(app: Arc<App>) {
     tokio::spawn(async move {
         loop {
             scheduler.run_pending().await;
-            tokio::time::sleep(Duration::from_millis(100)).await;
+            tokio::time::sleep(Duration::from_millis(50)).await;
         }
     });
 }
